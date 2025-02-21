@@ -35,13 +35,8 @@ describe("BeraSwap Liquidity Tests", function () {
 
             try {
                 // First approve HONEY tokens
-                const IERC20_ABI = [
-                    "function approve(address spender, uint256 amount) external returns (bool)",
-                    "function allowance(address owner, address spender) external view returns (uint256)",
-                    "function balanceOf(address account) external view returns (uint256)"
-                ];
                 
-                const honeyToken = new ethers.Contract(HONEY, IERC20_ABI, signer);
+                const honeyToken = await ethers.getContractAt("IBeraSwapPair", HONEY, signer);
                 await honeyToken.approve(ROUTER_ADDRESS, honeyAmount);
                 console.log("Approved HONEY tokens");
 
