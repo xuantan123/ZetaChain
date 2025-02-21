@@ -1,6 +1,7 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("dotenv").config();
 require('@nomiclabs/hardhat-ethers');
+const { ethers } = require("ethers");
 
 module.exports = {
   solidity: {
@@ -37,8 +38,9 @@ module.exports = {
   },
   networks: {
     berachain : {
-      url: "https://bartio.drpc.org", 
-      accounts: [process.env.PRIVATE_KEY],  
+      url: process.env.URL || "https://berachain-testnet-rpc.publicnode.com",
+      accounts: [process.env.PRIVATE_KEY],
+      gasPrice: 1000000000,
     },
   },
 };
