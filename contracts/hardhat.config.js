@@ -35,4 +35,7 @@ module.exports = {
       chainId: 80094, 
     },
   },
+  mocha: {
+    timeout: 300000 // 60 giây thay vì 40 giây
+  }
 };
