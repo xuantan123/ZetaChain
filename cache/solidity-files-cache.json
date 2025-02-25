@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\BeraChain\\BeraChain\\contracts\\BeraSwapRouter.sol": {
-      "lastModificationDate": 1740121836067,
-      "contentHash": "faac1eb1a54f0147116a701c96292dd5",
+      "lastModificationDate": 1740456951265,
+      "contentHash": "4f950d80b3a3f943b8cff5689135d642",
       "sourceName": "contracts/BeraSwapRouter.sol",
       "solcConfig": {
         "version": "0.6.6",
@@ -30,8 +30,7 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.5.0 <=0.6.6",
-        ">=0.5.0"
+        ">=0.5.0 <=0.6.6"
       ],
       "artifacts": [
         "BeraSwapLibrary",
@@ -40,7 +39,7 @@
         "IBeraSwapFactory",
         "IBeraSwapPair",
         "IBeraSwapRouter",
-        "IWBNB",
+        "IWETH",
         "SafeMath",
         "TransferHelper"
       ]
@@ -761,41 +760,6 @@
         "BeraPair"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\UQ112x112.sol": {
-      "lastModificationDate": 1740121836072,
-      "contentHash": "ae00c5d1575a72dd374e925f90d94650",
-      "sourceName": "contracts/factory/UQ112x112.sol",
-      "solcConfig": {
-        "version": "0.5.16",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "=0.5.16"
-      ],
-      "artifacts": [
-        "UQ112x112"
-      ]
-    },
     "D:\\BeraChain\\BeraChain\\contracts\\factory\\Math.sol": {
       "lastModificationDate": 1740121836072,
       "contentHash": "82676f5cefc482a167096f7087a32a6d",
@@ -829,6 +793,41 @@
       ],
       "artifacts": [
         "Math"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain\\contracts\\factory\\UQ112x112.sol": {
+      "lastModificationDate": 1740121836072,
+      "contentHash": "ae00c5d1575a72dd374e925f90d94650",
+      "sourceName": "contracts/factory/UQ112x112.sol",
+      "solcConfig": {
+        "version": "0.5.16",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.5.16"
+      ],
+      "artifacts": [
+        "UQ112x112"
       ]
     },
     "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraFactory.sol": {

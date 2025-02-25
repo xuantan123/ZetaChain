@@ -1,7 +1,7 @@
 /**
  *Submitted for verification at BscScan.com on 2020-09-14
 */
-// Original license: SPDX_License_Identifier: MIT
+
 pragma solidity >=0.5.0 <=0.6.6;
 
 interface IBeraSwapFactory {
@@ -57,15 +57,16 @@ library TransferHelper {
         require(success && (data.length == 0 || abi.decode(data, (bool))), 'TransferHelper: TRANSFER_FROM_FAILED');
     }
 
-    function safeTransferBNB(address to, uint256 value) internal {
+    function safeTransferETH(address to, uint256 value) internal {
         (bool success, ) = to.call{value: value}(new bytes(0));
-        require(success, 'TransferHelper: BNB_TRANSFER_FAILED');
+        require(success, 'TransferHelper: ETH_TRANSFER_FAILED');
     }
 }
+
 interface IBeraSwapRouter {
     function factory() external pure returns (address);
 
-    function WBNB() external pure returns (address);
+    function WETH() external pure returns (address);
 
     function addLiquidity(
         address tokenA,
@@ -84,11 +85,11 @@ interface IBeraSwapRouter {
             uint256 liquidity
         );
 
-    function addLiquidityBNB(
+    function addLiquidityETH(
         address token,
         uint256 amountTokenDesired,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
     )
@@ -96,7 +97,7 @@ interface IBeraSwapRouter {
         payable
         returns (
             uint256 amountToken,
-            uint256 amountBNB,
+            uint256 amountETH,
             uint256 liquidity
         );
 
@@ -110,14 +111,14 @@ interface IBeraSwapRouter {
         uint256 deadline
     ) external returns (uint256 amountA, uint256 amountB);
 
-    function removeLiquidityBNB(
+    function removeLiquidityETH(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
-    ) external returns (uint256 amountToken, uint256 amountBNB);
+    ) external returns (uint256 amountToken, uint256 amountETH);
 
     function removeLiquidityWithPermit(
         address tokenA,
@@ -133,18 +134,18 @@ interface IBeraSwapRouter {
         bytes32 s
     ) external returns (uint256 amountA, uint256 amountB);
 
-    function removeLiquidityBNBWithPermit(
+    function removeLiquidityETHWithPermit(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline,
         bool approveMax,
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) external returns (uint256 amountToken, uint256 amountBNB);
+    ) external returns (uint256 amountToken, uint256 amountETH);
 
     function swapExactTokensForTokens(
         uint256 amountIn,
@@ -162,14 +163,14 @@ interface IBeraSwapRouter {
         uint256 deadline
     ) external returns (uint256[] memory amounts);
 
-    function swapExactBNBForTokens(
+    function swapExactETHForTokens(
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external payable returns (uint256[] memory amounts);
 
-    function swapTokensForExactBNB(
+    function swapTokensForExactETH(
         uint256 amountOut,
         uint256 amountInMax,
         address[] calldata path,
@@ -177,7 +178,7 @@ interface IBeraSwapRouter {
         uint256 deadline
     ) external returns (uint256[] memory amounts);
 
-    function swapExactTokensForBNB(
+    function swapExactTokensForETH(
         uint256 amountIn,
         uint256 amountOutMin,
         address[] calldata path,
@@ -185,34 +186,34 @@ interface IBeraSwapRouter {
         uint256 deadline
     ) external returns (uint256[] memory amounts);
 
-    function swapBNBForExactTokens(
+    function swapETHForExactTokens(
         uint256 amountOut,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external payable returns (uint256[] memory amounts);
 
-    function removeLiquidityBNBSupportingFeeOnTransferTokens(
+    function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
-    ) external returns (uint256 amountBNB);
+    ) external returns (uint256 amountETH);
 
-    function removeLiquidityBNBWithPermitSupportingFeeOnTransferTokens(
+    function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline,
         bool approveMax,
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) external returns (uint256 amountBNB);
+    ) external returns (uint256 amountETH);
 
     function swapExactTokensForTokensSupportingFeeOnTransferTokens(
         uint256 amountIn,
@@ -222,14 +223,14 @@ interface IBeraSwapRouter {
         uint256 deadline
     ) external;
 
-    function swapExactBNBForTokensSupportingFeeOnTransferTokens(
+    function swapExactETHForTokensSupportingFeeOnTransferTokens(
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external payable;
 
-    function swapExactTokensForBNBSupportingFeeOnTransferTokens(
+    function swapExactTokensForETHSupportingFeeOnTransferTokens(
         uint256 amountIn,
         uint256 amountOutMin,
         address[] calldata path,
@@ -478,8 +479,6 @@ interface IBeraSwapPair {
  * Using this library instead of the unchecked operations eliminates an entire
  * class of bugs, so it's recommended to use it always.
  */
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.5.0;
 library SafeMath {
     /**
      * @dev Returns the addition of two unsigned integers, reverting on
@@ -748,7 +747,7 @@ interface IBEP20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-interface IWBNB {
+interface IWETH {
     function deposit() external payable;
 
     function transfer(address to, uint256 value) external returns (bool);
@@ -759,20 +758,20 @@ interface IWBNB {
 contract BeraSwapRouter is IBeraSwapRouter {
     using SafeMath for uint256;
     address public immutable override factory;
-    address public immutable override WBNB;
+    address public immutable override WETH;
 
     modifier ensure(uint256 deadline) {
         require(deadline >= block.timestamp, 'BeraSwapRouter: EXPIRED');
         _;
     }
 
-    constructor(address _factory, address _WBNB) public {
+    constructor(address _factory, address _WETH) public {
         factory = _factory;
-        WBNB = _WBNB;
+        WETH = _WETH;
     }
 
     receive() external payable {
-        assert(msg.sender == WBNB); // only accept BNB via fallback from the WBNB contract
+        assert(msg.sender == WETH); // only accept ETH via fallback from the WETH contract
     }
 
     // **** ADD LIQUIDITY ****
@@ -832,11 +831,11 @@ contract BeraSwapRouter is IBeraSwapRouter {
         liquidity = IBeraSwapPair(pair).mint(to);
     }
 
-    function addLiquidityBNB(
+    function addLiquidityETH(
         address token,
         uint256 amountTokenDesired,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
     )
@@ -847,25 +846,25 @@ contract BeraSwapRouter is IBeraSwapRouter {
         ensure(deadline)
         returns (
             uint256 amountToken,
-            uint256 amountBNB,
+            uint256 amountETH,
             uint256 liquidity
         )
     {
-        (amountToken, amountBNB) = _addLiquidity(
+        (amountToken, amountETH) = _addLiquidity(
             token,
-            WBNB,
+            WETH,
             amountTokenDesired,
             msg.value,
             amountTokenMin,
-            amountBNBMin
+            amountETHMin
         );
-        address pair = BeraSwapLibrary.pairFor(factory, token, WBNB);
+        address pair = BeraSwapLibrary.pairFor(factory, token, WETH);
         TransferHelper.safeTransferFrom(token, msg.sender, pair, amountToken);
-        IWBNB(WBNB).deposit{value: amountBNB}();
-        assert(IWBNB(WBNB).transfer(pair, amountBNB));
+        IWETH(WETH).deposit{value: amountETH}();
+        assert(IWETH(WETH).transfer(pair, amountETH));
         liquidity = IBeraSwapPair(pair).mint(to);
-        // refund dust bnb, if any
-        if (msg.value > amountBNB) TransferHelper.safeTransferBNB(msg.sender, msg.value - amountBNB);
+        // refund dust ETH, if any
+        if (msg.value > amountETH) TransferHelper.safeTransferETH(msg.sender, msg.value - amountETH);
     }
 
     // **** REMOVE LIQUIDITY ****
@@ -887,26 +886,26 @@ contract BeraSwapRouter is IBeraSwapRouter {
         require(amountB >= amountBMin, 'BeraSwapRouter: INSUFFICIENT_B_AMOUNT');
     }
 
-    function removeLiquidityBNB(
+    function removeLiquidityETH(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
-    ) public virtual override ensure(deadline) returns (uint256 amountToken, uint256 amountBNB) {
-        (amountToken, amountBNB) = removeLiquidity(
+    ) public virtual override ensure(deadline) returns (uint256 amountToken, uint256 amountETH) {
+        (amountToken, amountETH) = removeLiquidity(
             token,
-            WBNB,
+            WETH,
             liquidity,
             amountTokenMin,
-            amountBNBMin,
+            amountETHMin,
             address(this),
             deadline
         );
         TransferHelper.safeTransfer(token, to, amountToken);
-        IWBNB(WBNB).withdraw(amountBNB);
-        TransferHelper.safeTransferBNB(to, amountBNB);
+        IWETH(WETH).withdraw(amountETH);
+        TransferHelper.safeTransferETH(to, amountETH);
     }
 
     function removeLiquidityWithPermit(
@@ -928,59 +927,59 @@ contract BeraSwapRouter is IBeraSwapRouter {
         (amountA, amountB) = removeLiquidity(tokenA, tokenB, liquidity, amountAMin, amountBMin, to, deadline);
     }
 
-    function removeLiquidityBNBWithPermit(
+    function removeLiquidityETHWithPermit(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline,
         bool approveMax,
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) external virtual override returns (uint256 amountToken, uint256 amountBNB) {
-        address pair = BeraSwapLibrary.pairFor(factory, token, WBNB);
+    ) external virtual override returns (uint256 amountToken, uint256 amountETH) {
+        address pair = BeraSwapLibrary.pairFor(factory, token, WETH);
         uint256 value = approveMax ? uint256(-1) : liquidity;
         IBeraSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
-        (amountToken, amountBNB) = removeLiquidityBNB(token, liquidity, amountTokenMin, amountBNBMin, to, deadline);
+        (amountToken, amountETH) = removeLiquidityETH(token, liquidity, amountTokenMin, amountETHMin, to, deadline);
     }
 
     // **** REMOVE LIQUIDITY (supporting fee-on-transfer tokens) ****
-    function removeLiquidityBNBSupportingFeeOnTransferTokens(
+    function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline
-    ) public virtual override ensure(deadline) returns (uint256 amountBNB) {
-        (, amountBNB) = removeLiquidity(token, WBNB, liquidity, amountTokenMin, amountBNBMin, address(this), deadline);
+    ) public virtual override ensure(deadline) returns (uint256 amountETH) {
+        (, amountETH) = removeLiquidity(token, WETH, liquidity, amountTokenMin, amountETHMin, address(this), deadline);
         TransferHelper.safeTransfer(token, to, IBEP20(token).balanceOf(address(this)));
-        IWBNB(WBNB).withdraw(amountBNB);
-        TransferHelper.safeTransferBNB(to, amountBNB);
+        IWETH(WETH).withdraw(amountETH);
+        TransferHelper.safeTransferETH(to, amountETH);
     }
 
-    function removeLiquidityBNBWithPermitSupportingFeeOnTransferTokens(
+    function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
         address token,
         uint256 liquidity,
         uint256 amountTokenMin,
-        uint256 amountBNBMin,
+        uint256 amountETHMin,
         address to,
         uint256 deadline,
         bool approveMax,
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) external virtual override returns (uint256 amountBNB) {
-        address pair = BeraSwapLibrary.pairFor(factory, token, WBNB);
+    ) external virtual override returns (uint256 amountETH) {
+        address pair = BeraSwapLibrary.pairFor(factory, token, WETH);
         uint256 value = approveMax ? uint256(-1) : liquidity;
         IBeraSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
-        amountBNB = removeLiquidityBNBSupportingFeeOnTransferTokens(
+        amountETH = removeLiquidityETHSupportingFeeOnTransferTokens(
             token,
             liquidity,
             amountTokenMin,
-            amountBNBMin,
+            amountETHMin,
             to,
             deadline
         );
@@ -1041,28 +1040,28 @@ contract BeraSwapRouter is IBeraSwapRouter {
         _swap(amounts, path, to);
     }
 
-    function swapExactBNBForTokens(
+    function swapExactETHForTokens(
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[0] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[0] == WETH, 'BeraSwapRouter: INVALID_PATH');
         amounts = BeraSwapLibrary.getAmountsOut(factory, msg.value, path);
         require(amounts[amounts.length - 1] >= amountOutMin, 'BeraSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
-        IWBNB(WBNB).deposit{value: amounts[0]}();
-        assert(IWBNB(WBNB).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
+        IWETH(WETH).deposit{value: amounts[0]}();
+        assert(IWETH(WETH).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
         _swap(amounts, path, to);
     }
 
-    function swapTokensForExactBNB(
+    function swapTokensForExactETH(
         uint256 amountOut,
         uint256 amountInMax,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[path.length - 1] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WETH, 'BeraSwapRouter: INVALID_PATH');
         amounts = BeraSwapLibrary.getAmountsIn(factory, amountOut, path);
         require(amounts[0] <= amountInMax, 'BeraSwapRouter: EXCESSIVE_INPUT_AMOUNT');
         TransferHelper.safeTransferFrom(
@@ -1072,18 +1071,18 @@ contract BeraSwapRouter is IBeraSwapRouter {
             amounts[0]
         );
         _swap(amounts, path, address(this));
-        IWBNB(WBNB).withdraw(amounts[amounts.length - 1]);
-        TransferHelper.safeTransferBNB(to, amounts[amounts.length - 1]);
+        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
+        TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
-    function swapExactTokensForBNB(
+    function swapExactTokensForETH(
         uint256 amountIn,
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[path.length - 1] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WETH, 'BeraSwapRouter: INVALID_PATH');
         amounts = BeraSwapLibrary.getAmountsOut(factory, amountIn, path);
         require(amounts[amounts.length - 1] >= amountOutMin, 'BeraSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
         TransferHelper.safeTransferFrom(
@@ -1093,24 +1092,24 @@ contract BeraSwapRouter is IBeraSwapRouter {
             amounts[0]
         );
         _swap(amounts, path, address(this));
-        IWBNB(WBNB).withdraw(amounts[amounts.length - 1]);
-        TransferHelper.safeTransferBNB(to, amounts[amounts.length - 1]);
+        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
+        TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
-    function swapBNBForExactTokens(
+    function swapETHForExactTokens(
         uint256 amountOut,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[0] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[0] == WETH, 'BeraSwapRouter: INVALID_PATH');
         amounts = BeraSwapLibrary.getAmountsIn(factory, amountOut, path);
         require(amounts[0] <= msg.value, 'BeraSwapRouter: EXCESSIVE_INPUT_AMOUNT');
-        IWBNB(WBNB).deposit{value: amounts[0]}();
-        assert(IWBNB(WBNB).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
+        IWETH(WETH).deposit{value: amounts[0]}();
+        assert(IWETH(WETH).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
         _swap(amounts, path, to);
-        // refund dust bnb, if any
-        if (msg.value > amounts[0]) TransferHelper.safeTransferBNB(msg.sender, msg.value - amounts[0]);
+        // refund dust ETH, if any
+        if (msg.value > amounts[0]) TransferHelper.safeTransferETH(msg.sender, msg.value - amounts[0]);
     }
 
     // **** SWAP (supporting fee-on-transfer tokens) ****
@@ -1160,16 +1159,16 @@ contract BeraSwapRouter is IBeraSwapRouter {
         );
     }
 
-    function swapExactBNBForTokensSupportingFeeOnTransferTokens(
+    function swapExactETHForTokensSupportingFeeOnTransferTokens(
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) {
-        require(path[0] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[0] == WETH, 'BeraSwapRouter: INVALID_PATH');
         uint256 amountIn = msg.value;
-        IWBNB(WBNB).deposit{value: amountIn}();
-        assert(IWBNB(WBNB).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amountIn));
+        IWETH(WETH).deposit{value: amountIn}();
+        assert(IWETH(WETH).transfer(BeraSwapLibrary.pairFor(factory, path[0], path[1]), amountIn));
         uint256 balanceBefore = IBEP20(path[path.length - 1]).balanceOf(to);
         _swapSupportingFeeOnTransferTokens(path, to);
         require(
@@ -1178,14 +1177,14 @@ contract BeraSwapRouter is IBeraSwapRouter {
         );
     }
 
-    function swapExactTokensForBNBSupportingFeeOnTransferTokens(
+    function swapExactTokensForETHSupportingFeeOnTransferTokens(
         uint256 amountIn,
         uint256 amountOutMin,
         address[] calldata path,
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) {
-        require(path[path.length - 1] == WBNB, 'BeraSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WETH, 'BeraSwapRouter: INVALID_PATH');
         TransferHelper.safeTransferFrom(
             path[0],
             msg.sender,
@@ -1193,10 +1192,10 @@ contract BeraSwapRouter is IBeraSwapRouter {
             amountIn
         );
         _swapSupportingFeeOnTransferTokens(path, address(this));
-        uint256 amountOut = IBEP20(WBNB).balanceOf(address(this));
+        uint256 amountOut = IBEP20(WETH).balanceOf(address(this));
         require(amountOut >= amountOutMin, 'BeraSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
-        IWBNB(WBNB).withdraw(amountOut);
-        TransferHelper.safeTransferBNB(to, amountOut);
+        IWETH(WETH).withdraw(amountOut);
+        TransferHelper.safeTransferETH(to, amountOut);
     }
 
     // **** LIBRARY FUNCTIONS ****

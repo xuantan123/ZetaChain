@@ -1,6 +1,7 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("dotenv").config();
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomicfoundation/hardhat-verify"); 
 
 module.exports = {
   solidity: {
@@ -29,10 +30,16 @@ module.exports = {
      ]
   },
   networks: {
-    berachian : {
-      url: "wss://bartio.drpc.org", 
-      accounts: [process.env.PRIVATE_KEY], 
+    berachain: {
+      url: process.env.URL || "https://rpc.berachain.com",  
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 80094, 
+      gasPrice: 1000000000
+    },
+  },
+  etherscan: {
+    apiKey: {
+      berachain: "berachain_bartio", // apiKey is not required, just set a placeholder
     },
   },
   mocha: {

@@ -5,7 +5,7 @@
   "abi": [
     {
       "inputs": [],
-      "name": "WBNB",
+      "name": "WETH",
       "outputs": [
         {
           "internalType": "address",
@@ -99,7 +99,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNBMin",
+          "name": "amountETHMin",
           "type": "uint256"
         },
         {
@@ -113,7 +113,7 @@
           "type": "uint256"
         }
       ],
-      "name": "addLiquidityBNB",
+      "name": "addLiquidityETH",
       "outputs": [
         {
           "internalType": "uint256",
@@ -122,7 +122,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNB",
+          "name": "amountETH",
           "type": "uint256"
         },
         {
@@ -355,7 +355,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNBMin",
+          "name": "amountETHMin",
           "type": "uint256"
         },
         {
@@ -369,7 +369,7 @@
           "type": "uint256"
         }
       ],
-      "name": "removeLiquidityBNB",
+      "name": "removeLiquidityETH",
       "outputs": [
         {
           "internalType": "uint256",
@@ -378,7 +378,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNB",
+          "name": "amountETH",
           "type": "uint256"
         }
       ],
@@ -404,7 +404,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNBMin",
+          "name": "amountETHMin",
           "type": "uint256"
         },
         {
@@ -418,11 +418,11 @@
           "type": "uint256"
         }
       ],
-      "name": "removeLiquidityBNBSupportingFeeOnTransferTokens",
+      "name": "removeLiquidityETHSupportingFeeOnTransferTokens",
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "amountBNB",
+          "name": "amountETH",
           "type": "uint256"
         }
       ],
@@ -448,7 +448,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNBMin",
+          "name": "amountETHMin",
           "type": "uint256"
         },
         {
@@ -482,7 +482,7 @@
           "type": "bytes32"
         }
       ],
-      "name": "removeLiquidityBNBWithPermit",
+      "name": "removeLiquidityETHWithPermit",
       "outputs": [
         {
           "internalType": "uint256",
@@ -491,7 +491,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNB",
+          "name": "amountETH",
           "type": "uint256"
         }
       ],
@@ -517,7 +517,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "amountBNBMin",
+          "name": "amountETHMin",
           "type": "uint256"
         },
         {
@@ -551,11 +551,11 @@
           "type": "bytes32"
         }
       ],
-      "name": "removeLiquidityBNBWithPermitSupportingFeeOnTransferTokens",
+      "name": "removeLiquidityETHWithPermitSupportingFeeOnTransferTokens",
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "amountBNB",
+          "name": "amountETH",
           "type": "uint256"
         }
       ],
@@ -659,7 +659,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapBNBForExactTokens",
+      "name": "swapETHForExactTokens",
       "outputs": [
         {
           "internalType": "uint256[]",
@@ -693,7 +693,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapExactBNBForTokens",
+      "name": "swapExactETHForTokens",
       "outputs": [
         {
           "internalType": "uint256[]",
@@ -727,7 +727,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapExactBNBForTokensSupportingFeeOnTransferTokens",
+      "name": "swapExactETHForTokensSupportingFeeOnTransferTokens",
       "outputs": [],
       "stateMutability": "payable",
       "type": "function"
@@ -760,7 +760,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapExactTokensForBNB",
+      "name": "swapExactTokensForETH",
       "outputs": [
         {
           "internalType": "uint256[]",
@@ -799,7 +799,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapExactTokensForBNBSupportingFeeOnTransferTokens",
+      "name": "swapExactTokensForETHSupportingFeeOnTransferTokens",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -904,7 +904,7 @@
           "type": "uint256"
         }
       ],
-      "name": "swapTokensForExactBNB",
+      "name": "swapTokensForExactETH",
       "outputs": [
         {
           "internalType": "uint256[]",
