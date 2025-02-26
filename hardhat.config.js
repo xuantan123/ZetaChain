@@ -1,6 +1,8 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("dotenv").config();
 require('@nomiclabs/hardhat-ethers');
+require("@nomicfoundation/hardhat-verify");
+
 const { ethers } = require("ethers");
 
 module.exports = {
@@ -37,11 +39,25 @@ module.exports = {
      ],
   },
   networks: {
-    berachain : {
-      url: process.env.URL || "https://berachain-testnet-rpc.publicnode.com",
-      accounts: [process.env.PRIVATE_KEY],
+    berachain: {
+      url: process.env.URL || "https://rpc.berachain.com",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 80084,
       gasPrice: 1000000000,
     },
+  },
+  etherscan: {
+    apiKey: "berachain_bartio", // Không cần API key, chỉ đặt placeholder
+    customChains: [
+      {
+        network: "berachain", // Đặt trùng với `networks.berachain`
+        chainId: 80084,
+        urls: {
+          apiURL: "https://api.routescan.io/v2/network/testnet/evm/80084/etherscan",
+          browserURL: "https://bartio.beratrail.io",
+        },
+      },
+    ],
   },
 };
 

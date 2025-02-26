@@ -285,7 +285,7 @@ library BeraSwapLibrary {
                         hex'ff',
                         factory,
                         keccak256(abi.encodePacked(token0, token1)),
-                        hex'e2e87433120e32c4738a7d8f3271f3d872cbe16241d67537139158d90bac61d3' // init code hash
+                        hex'0e4b3c3320d3ed33a564d800cd6a1544f83c4f5db687a43ebb878359aefdcb2d' // init code hash
                     )
                 )
             )

@@ -29,7 +29,7 @@ library BeraLibrary {
                         hex"ff",
                         factory,
                         keccak256(abi.encodePacked(token0, token1)),
-                        hex"a5934690703a592a07e841ca29d5e5c79b5e22ed4749057bb216dc31100be1c0" // init code hash
+                        hex"0e4b3c3320d3ed33a564d800cd6a1544f83c4f5db687a43ebb878359aefdcb2d" // init code hash
                     )
                 )
             )

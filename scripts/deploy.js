@@ -15,6 +15,11 @@ async function main() {
   const router = await BeraSwapRouter.deploy(factory.address, wethAddress);
   await router.deployed();
   console.log("Router deployed at:", router.address);
+
+  const BeraToken = await hre.ethers.getContractFactory("Beraworld");
+  const token = await BeraToken.deploy(deployer.address);
+  await token.deployed();
+  console.log("Token deployed at:", token.address);
 }
 
 main()
