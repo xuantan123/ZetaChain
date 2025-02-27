@@ -1760,89 +1760,106 @@ describe("Liquidity & Swap Tests", function () {
     });
 
     it("Should add liquidity to WBERA-BRW pool", async function () {
-        try {
-            const amountWBERA = ethers.utils.parseUnits("1.0", 18); // 1 WBERA
-            const amountBRW = ethers.utils.parseUnits("200.0", 18); // 200 BRW
-            const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
+      try {
+          const amountWBERA = ethers.utils.parseUnits("0.1", 18); // 0.1 WBERA
+          const amountBRW = ethers.utils.parseUnits("200.0", 18); // 200 BRW
+          const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
+  
+          // Kiểm tra số dư trước khi thêm thanh khoản
+          const balanceWBERA = await wberaToken.balanceOf(signer.address);
+          const balanceBRW = await brwToken.balanceOf(signer.address);
+          console.log("WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
+          console.log("BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
+  
+          // Kiểm tra allowance và approve nếu cần
+          const allowanceWBERA = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
+          const allowanceBRW = await brwToken.allowance(signer.address, ROUTER_ADDRESS);
+          console.log("Allowance WBERA:", allowanceWBERA.toString());
+          console.log("Allowance BRW:", allowanceBRW.toString());
+  
+          if (allowanceWBERA.lt(amountWBERA)) {
+              console.log("Approving WBERA...");
+              const approveTx1 = await wberaToken.approve(ROUTER_ADDRESS, amountWBERA);
+              await approveTx1.wait();
+              console.log("WBERA Approved!");
+          }
+  
+          if (allowanceBRW.lt(amountBRW)) {
+              console.log("Approving BRW...");
+              const approveTx2 = await brwToken.approve(ROUTER_ADDRESS, amountBRW);
+              await approveTx2.wait();
+              console.log("BRW Approved!");
+          }
+  
+          // Thêm thanh khoản vào pool
+          console.log("Adding Liquidity...");
+          const tx = await router.addLiquidity(
+              WBERA,
+              BRW,
+              amountWBERA,
+              amountBRW,
+              0,
+              0,
+              signer.address,
+              deadline,
+              { gasLimit: 1000000 }
+          );
+  
+          const receipt = await tx.wait();
+          console.log("Thêm thanh khoản thành công! Tx Hash:", receipt.transactionHash);
+  
+      } catch (error) {
+          console.error("Liquidity Error:", error);
+          throw error;
+      }
+  });
+  
 
-            // Kiểm tra số dư trước khi thêm thanh khoản
-            const balanceWBERA = await wberaToken.balanceOf(signer.address);
-            const balanceBRW = await brwToken.balanceOf(signer.address);
-            console.log("WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
-            console.log("BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
+  it("Should swap WBERA for BRW", async function () {
+    try {
+        const amountIn = ethers.utils.parseUnits("0.005", 18); // 0.5 WBERA
+        const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
 
-            // Kiểm tra allowance và approve nếu cần
-            const allowanceWBERA = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
-            const allowanceBRW = await brwToken.allowance(signer.address, ROUTER_ADDRESS);
-
-            if (allowanceWBERA < amountWBERA) {
-                console.log("Approving WBERA...");
-                const tx1 = await wberaToken.approve(ROUTER_ADDRESS, amountWBERA);
-                await tx1.wait();
-                console.log("WBERA Approved!");
-            }
-
-            if (allowanceBRW < amountBRW) {
-                console.log("Approving BRW...");
-                const tx2 = await brwToken.approve(ROUTER_ADDRESS, amountBRW);
-                await tx2.wait();
-                console.log("BRW Approved!");
-            }
-
-            // Thêm thanh khoản vào pool
-            console.log("Adding Liquidity...");
-            const tx = await router.addLiquidity(
-                WBERA,
-                BRW,
-                amountWBERA,
-                amountBRW,
-                0,
-                0,
-                signer.address,
-                deadline,
-                { gasLimit: 300000 }
-            );
-
-            const receipt = await tx.wait();
-            console.log("Liquidity Added! Tx Hash:", receipt.transactionHash);
-
-        } catch (error) {
-            console.error("Liquidity Error:", error);
-            throw error;
+        // Kiểm tra allowance trước khi swap
+        const allowance = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
+        if (allowance.lt(amountIn)) {
+            console.log("Approving WBERA for swap...");
+            const approveTx = await wberaToken.approve(ROUTER_ADDRESS, amountIn);
+            await approveTx.wait();
+            console.log("WBERA Approved for swap!");
         }
-    });
 
-    it("Should swap WBERA for BRW", async function () {
-        try {
-            const amountIn = ethers.utils.parseUnits("0.5", 18); // 0.5 WBERA
-            const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
+        // Kiểm tra số dư trước khi swap
+        const balanceWBERA = await wberaToken.balanceOf(signer.address);
+        console.log("Current WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
 
-            // Kiểm tra allowance và approve nếu cần
-            const allowance = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
-            if (allowance < amountIn) {
-                console.log("Approving WBERA for swap...");
-                const tx1 = await wberaToken.approve(ROUTER_ADDRESS, amountIn);
-                await tx1.wait();
-                console.log("WBERA Approved for swap!");
-            }
-
-            // Swap token
-            console.log("Swapping WBERA for BRW...");
-            const tx = await router.swapExactTokensForTokens(
-                amountIn,
-                0,
-                [WBERA, BRW],
-                signer.address,
-                deadline,
-                { gasLimit: 300000 }
-            );
-
-            const receipt = await tx.wait();
-            console.log("Swap Completed! Tx Hash:", receipt.hash);
-
-        } catch (error) {
-            console.error("Swap Error:", error);
-            throw error;
+        if (balanceWBERA.lt(amountIn)) {
+            console.error("Not enough WBERA to swap!");
+            return;
         }
-    });
+
+        // Swap token
+        console.log("Swapping WBERA for BRW...");
+        const swapTx = await router.swapExactTokensForTokens(
+            amountIn,
+            0, // Chấp nhận bất kỳ lượng BRW nào (có thể thay bằng slippage tolerance)
+            [WBERA, BRW],
+            signer.address,
+            deadline,
+            { gasLimit: 300000 }
+        );
+
+        const receipt = await swapTx.wait();
+        console.log("Swap Completed! Tx Hash:", receipt.transactionHash);
+
+        // Kiểm tra số dư BRW sau khi swap
+        const balanceBRW = await brwToken.balanceOf(signer.address);
+        console.log("New BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
+
+    } catch (error) {
+        console.error("Swap Error:", error);
+        throw error;
+    }
+});
+
 });
