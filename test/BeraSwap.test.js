@@ -2009,8 +2009,8 @@ describe("Liquidity & Swap Tests", function () {
           // Thêm thanh khoản vào pool
           console.log("Adding Liquidity...");
           const tx = await router.addLiquidity(
-              WBERA,
-              BRW,
+              WZETA,
+              ZTW,
               amountWZETA,
               amountZTW,
               0,
