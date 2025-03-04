@@ -2,6 +2,7 @@ require("dotenv").config();
 const { expect } = require("chai");
 const { ethers } = require("ethers");
 
+
 // Khai báo biến contract
 const ROUTER_ADDRESS = "0x475251A9411CbD033DD7BB12420D1C9f1f344c49"; // Địa chỉ Router
 const FACTORY_ABI = [
@@ -1943,10 +1944,10 @@ const WZETA_ABI = [
 ];
 // Token WBERA và BRW
 const WZETA = "0x5F0b1a82749cb4E2278EC87F8BF6B618dC71a8bf"; // Địa chỉ WBERA
-const ZTW = "0x01dcea1954EA2a640F56ea52e2eaf31Cb934B473"; // Địa chỉ BRW
+const ZTW = "0x01dcea1954EA2a640F56ea52e2eaf31Cb934B473"; // Địa chỉ ZTW
 
 describe("Liquidity & Swap Tests", function () {
-    let signer, router, wzetaToken, brwToken, factory;
+    let signer, router, wzetaToken, ztwToken, factory;
 
     before(async function () {
         try {
@@ -1974,40 +1975,49 @@ describe("Liquidity & Swap Tests", function () {
         }
     });
 
-    it("Should add liquidity to WBERA-BRW pool", async function () {
+    it("Should add liquidity to WBERA-ZTW pool", async function () {
       try {
-          const amountWZETA = ethers.utils.parseUnits("0.1", 18); // 0.1 WBERA
-          const amountZTW = ethers.utils.parseUnits("200.0", 18); // 200 BRW
-          const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
+          const amountWZETA = ethers.utils.parseUnits("5", 18); // 5 WBERA
+          const amountZTW = ethers.utils.parseUnits("10000.0", 18); // 10000 ZTW
+          const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // Deadline 20 phút
   
-          // Kiểm tra số dư trước khi thêm thanh khoản
+          console.log("🚀 Bắt đầu thêm thanh khoản...");
+  
+          // ✅ Kiểm tra số dư trước khi thêm thanh khoản
           const balanceWZETA = await wzetaToken.balanceOf(signer.address);
           const balanceZTW = await ztwToken.balanceOf(signer.address);
-          console.log("WZETA Balance:", ethers.utils.formatUnits(balanceWZETA, 18));
-          console.log("ZTW Balance:", ethers.utils.formatUnits(balanceZTW, 18));
+          console.log("💰 Số dư WZETA:", ethers.utils.formatUnits(balanceWZETA, 18));
+          console.log("💰 Số dư ZTW:", ethers.utils.formatUnits(balanceZTW, 18));
   
-          // Kiểm tra allowance và approve nếu cần
+          if (balanceWZETA.lt(amountWZETA) || balanceZTW.lt(amountZTW)) {
+              throw new Error("❌ Số dư không đủ để thêm thanh khoản!");
+          }
+  
+          // ✅ Kiểm tra allowance và approve nếu cần
           const allowanceWZETA = await wzetaToken.allowance(signer.address, ROUTER_ADDRESS);
-          const allowanceZTW = await brwToken.allowance(signer.address, ROUTER_ADDRESS);
-          console.log("Allowance WZETA:", allowanceWZETA.toString());
-          console.log("Allowance ZTW:", allowanceZTW.toString());
+          const allowanceZTW = await ztwToken.allowance(signer.address, ROUTER_ADDRESS);
+          console.log("🛂 Allowance WZETA:", ethers.utils.formatUnits(allowanceWZETA, 18));
+          console.log("🛂 Allowance ZTW:", ethers.utils.formatUnits(allowanceZTW, 18));
   
           if (allowanceWZETA.lt(amountWZETA)) {
-              console.log("Approving WBERA...");
+              console.log("🔓 Approving WBERA...");
               const approveTx1 = await wzetaToken.approve(ROUTER_ADDRESS, amountWZETA);
               await approveTx1.wait();
-              console.log("WBERA Approved!");
+              console.log("✅ WBERA Approved!");
           }
   
           if (allowanceZTW.lt(amountZTW)) {
-              console.log("Approving BRW...");
-              const approveTx2 = await brwToken.approve(ROUTER_ADDRESS, amountZTW);
+              console.log("🔓 Approving ZTW...");
+              const approveTx2 = await ztwToken.approve(ROUTER_ADDRESS, amountZTW);
               await approveTx2.wait();
-              console.log("BRW Approved!");
+              console.log("✅ ZTW Approved!");
           }
   
-          // Thêm thanh khoản vào pool
-          console.log("Adding Liquidity...");
+          // ✅ Kiểm tra deadline hợp lệ
+          console.log("🕒 Deadline:", deadline, new Date(deadline * 1000).toLocaleString());
+  
+          // ✅ Gọi hàm addLiquidity
+          console.log("🚀 Thêm thanh khoản...");
           const tx = await router.addLiquidity(
               WZETA,
               ZTW,
@@ -2017,17 +2027,21 @@ describe("Liquidity & Swap Tests", function () {
               0,
               signer.address,
               deadline,
-              { gasLimit: 1000000 }
+              { 
+                gasLimit: 1000000,
+                gasPrice: ethers.utils.parseUnits("200","gwei"),
+               }
           );
   
           const receipt = await tx.wait();
-          console.log("Thêm thanh khoản thành công! Tx Hash:", receipt.transactionHash);
+          console.log("🎉 Thêm thanh khoản thành công! Tx Hash:", receipt.transactionHash);
   
       } catch (error) {
-          console.error("Liquidity Error:", error);
+          console.error("❌ Lỗi khi thêm thanh khoản:", error.reason || error);
           throw error;
       }
-  });
+  }
+);
 
 //   it("Should swap WBERA for BRW", async function () {
 //     try {

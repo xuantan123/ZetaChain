@@ -1,0 +1,4 @@
+Deploying contracts with the account: 0xD883d78895ea55071a4B9e9583A1a13e09b07DA8
+Factory deployed at: 0x2c28c977F3BEFBfAC5CE19281c674895D2461578
+Router deployed at: 0x475251A9411CbD033DD7BB12420D1C9f1f344c49
+Token deployed at: 0x01dcea1954EA2a640F56ea52e2eaf31Cb934B473
