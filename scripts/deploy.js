@@ -4,20 +4,20 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners(); 
   console.log(`Deploying contracts with the account: ${deployer.address}`);
 
-  const BeraSwapFactory = await hre.ethers.getContractFactory("BeraFactory");
-  const factory = await BeraSwapFactory.deploy(deployer.address); 
+  const ZetaSwapFactory = await hre.ethers.getContractFactory("ZetaFactory");
+  const factory = await ZetaSwapFactory.deploy(deployer.address); 
   await factory.deployed();
   console.log("Factory deployed at:", factory.address);
 
-  const wethAddress = "0x2F6F07CDcf3588944Bf4C42aC74ff24bF56e7590"; 
+  const wZetaAddress = "0x5F0b1a82749cb4E2278EC87F8BF6B618dC71a8bf"; 
 
-  const BeraSwapRouter = await hre.ethers.getContractFactory("BeraSwapRouter");
-  const router = await BeraSwapRouter.deploy(factory.address, wethAddress);
+  const ZetaSwapRouter = await hre.ethers.getContractFactory("ZetaSwapRouter");
+  const router = await ZetaSwapRouter.deploy(factory.address, wZetaAddress);
   await router.deployed();
   console.log("Router deployed at:", router.address);
 
-  const BeraToken = await hre.ethers.getContractFactory("Beraworld");
-  const token = await BeraToken.deploy(deployer.address);
+  const ZetaToken = await hre.ethers.getContractFactory("Zetaworld");
+  const token = await ZetaToken.deploy(deployer.address);
   await token.deployed();
   console.log("Token deployed at:", token.address);
 }

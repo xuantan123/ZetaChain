@@ -39,25 +39,24 @@ module.exports = {
      ],
   },
   networks: {
-    berachain: {
-      url: process.env.URL || "https://rpc.berachain.com",
+    zetachain: {
+      url: process.env.URL ,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-      chainId: 80084,
-      gasPrice: 1000000000,
+      chainId: 7001,
     },
   },
-  etherscan: {
-    apiKey: "berachain_bartio", // Không cần API key, chỉ đặt placeholder
-    customChains: [
-      {
-        network: "berachain", // Đặt trùng với `networks.berachain`
-        chainId: 80084,
-        urls: {
-          apiURL: "https://api.routescan.io/v2/network/testnet/evm/80084/etherscan",
-          browserURL: "https://bartio.beratrail.io",
-        },
-      },
-    ],
-  },
+  // etherscan: {
+  //   apiKey: "berachain_bartio", // Không cần API key, chỉ đặt placeholder
+  //   customChains: [
+  //     {
+  //       network: "berachain", // Đặt trùng với `networks.berachain`
+  //       chainId: 80084,
+  //       urls: {
+  //         apiURL: "https://api.routescan.io/v2/network/testnet/evm/80084/etherscan",
+  //         browserURL: "https://bartio.beratrail.io",
+  //       },
+  //     },
+  //   ],
+  // },
 };
 

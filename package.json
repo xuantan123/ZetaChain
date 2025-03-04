@@ -12,12 +12,12 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-verify": "^2.0.13",
     "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "chai": "^5.2.0",
     "hardhat": "^2.22.19"
   },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "@uniswap/lib": "^4.0.1-alpha",
-    "chai": "^5.2.0",
     "dotenv": "^16.4.7"
   }
 }

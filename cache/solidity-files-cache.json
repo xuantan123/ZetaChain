@@ -1,252 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "D:\\BeraChain\\BeraChain\\contracts\\BeraSwapRouter.sol": {
-      "lastModificationDate": 1740469240096,
-      "contentHash": "72ce737981f09e39584d6b6b0e71d945",
-      "sourceName": "contracts/BeraSwapRouter.sol",
-      "solcConfig": {
-        "version": "0.6.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0 <=0.6.6"
-      ],
-      "artifacts": [
-        "BeraSwapLibrary",
-        "BeraSwapRouter",
-        "IBEP20",
-        "IBeraSwapFactory",
-        "IBeraSwapPair",
-        "IBeraSwapRouter",
-        "IWETH",
-        "SafeMath",
-        "TransferHelper"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraRouter01.sol": {
-      "lastModificationDate": 1740121836070,
-      "contentHash": "35c88d4dfb37065855c0f8b3016e93c3",
-      "sourceName": "contracts/factory/BeraRouter01.sol",
-      "solcConfig": {
-        "version": "0.6.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@uniswap/lib/contracts/libraries/TransferHelper.sol",
-        "./BeraLibrary.sol",
-        "./IBeraRouter01.sol",
-        "./IBeraFactory.sol",
-        "./IERC20.sol",
-        "./IWETH.sol"
-      ],
-      "versionPragmas": [
-        "=0.6.6"
-      ],
-      "artifacts": [
-        "BeraRouter01"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraLibrary.sol": {
-      "lastModificationDate": 1740473653955,
-      "contentHash": "872b5197b6a6bbc8fc04bc8c765120ce",
-      "sourceName": "contracts/factory/BeraLibrary.sol",
-      "solcConfig": {
-        "version": "0.6.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./SafeMath.sol",
-        "./IBeraFactory.sol",
-        "./IBeraPair.sol"
-      ],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "BeraLibrary"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\SafeMath.sol": {
-      "lastModificationDate": 1740121836072,
-      "contentHash": "8d1c52ee053e6ea50630cdd67379f241",
-      "sourceName": "contracts/factory/SafeMath.sol",
-      "solcConfig": {
-        "version": "0.6.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0 <0.7.0"
-      ],
-      "artifacts": [
-        "SafeMath"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraRouter.sol": {
-      "lastModificationDate": 1740121836070,
-      "contentHash": "10c49e8737979da157bf200faa236c0f",
-      "sourceName": "contracts/factory/BeraRouter.sol",
-      "solcConfig": {
-        "version": "0.6.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@uniswap/lib/contracts/libraries/TransferHelper.sol",
-        "./IBeraRouter02.sol",
-        "./IBeraFactory.sol",
-        "./BeraLibrary.sol",
-        "./SafeMath.sol",
-        "./IERC20.sol",
-        "./IWETH.sol"
-      ],
-      "versionPragmas": [
-        "=0.6.6"
-      ],
-      "artifacts": [
-        "BeraRouter"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\BeraToken.sol": {
-      "lastModificationDate": 1740536191928,
-      "contentHash": "1fffca916ea9cd9d747c34d47373bccc",
-      "sourceName": "contracts/BeraToken.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0 <=0.8.20",
-        "^0.8.18",
-        "^0.8.18",
-        "^0.8.4"
-      ],
-      "artifacts": [
-        "Beraworld",
-        "Context",
-        "IERC20",
-        "Ownable"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\Babylonian.sol": {
-      "lastModificationDate": 1740121836068,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\Babylonian.sol": {
+      "lastModificationDate": 1741076897302,
       "contentHash": "f79b669c6a0aa3d3f501fb52800db1c3",
       "sourceName": "contracts/factory/Babylonian.sol",
       "solcConfig": {
@@ -281,152 +37,8 @@
         "Babylonian"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraCallee.sol": {
-      "lastModificationDate": 1740121836070,
-      "contentHash": "b7ce99c570a6d6f5fe272aeba40377b4",
-      "sourceName": "contracts/factory/IBeraCallee.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IBeraCallee"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraFactory.sol": {
-      "lastModificationDate": 1740121836070,
-      "contentHash": "6857dac8c014af233717cd1881ccdabb",
-      "sourceName": "contracts/factory/IBeraFactory.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IBeraFactory"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\node_modules\\@uniswap\\lib\\contracts\\libraries\\TransferHelper.sol": {
-      "lastModificationDate": 1740121837905,
-      "contentHash": "70a9b37411c3a1aafa24fd8951aef143",
-      "sourceName": "@uniswap/lib/contracts/libraries/TransferHelper.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0"
-      ],
-      "artifacts": [
-        "TransferHelper"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IWETH.sol": {
-      "lastModificationDate": 1740121836072,
-      "contentHash": "69e3a909ea8ece795fac8929b9863b1f",
-      "sourceName": "contracts/factory/IWETH.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IWETH"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IERC20.sol": {
-      "lastModificationDate": 1740121836072,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IERC20.sol": {
+      "lastModificationDate": 1741076897313,
       "contentHash": "c1daa20ba503533a624f17f777c966f9",
       "sourceName": "contracts/factory/IERC20.sol",
       "solcConfig": {
@@ -461,10 +73,46 @@
         "IERC20"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraPair.sol": {
-      "lastModificationDate": 1740121836071,
-      "contentHash": "47900bad139c18f634b0b3d56abf3429",
-      "sourceName": "contracts/factory/IBeraPair.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\node_modules\\@uniswap\\lib\\contracts\\libraries\\TransferHelper.sol": {
+      "lastModificationDate": 1741076898899,
+      "contentHash": "70a9b37411c3a1aafa24fd8951aef143",
+      "sourceName": "@uniswap/lib/contracts/libraries/TransferHelper.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0"
+      ],
+      "artifacts": [
+        "TransferHelper"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IWETH.sol": {
+      "lastModificationDate": 1741076897314,
+      "contentHash": "69e3a909ea8ece795fac8929b9863b1f",
+      "sourceName": "contracts/factory/IWETH.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -494,13 +142,157 @@
         ">=0.5.0"
       ],
       "artifacts": [
-        "IBeraPair"
+        "IWETH"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraRouter02.sol": {
-      "lastModificationDate": 1740121836071,
-      "contentHash": "c4d65527a18f371643fef4fbe441a897",
-      "sourceName": "contracts/factory/IBeraRouter02.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaPair.sol": {
+      "lastModificationDate": 1741081039018,
+      "contentHash": "706819976ec97d94fb6d7a76119b3faf",
+      "sourceName": "contracts/factory/IZetaPair.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IZetaPair"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaCallee.sol": {
+      "lastModificationDate": 1741080493906,
+      "contentHash": "24d0ac07c439992673d00658d7cc9748",
+      "sourceName": "contracts/factory/IZetaCallee.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IZetaCallee"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaFactory.sol": {
+      "lastModificationDate": 1741080518057,
+      "contentHash": "0ebc8f898ddf7ca36f7b8b94481b1eaa",
+      "sourceName": "contracts/factory/IZetaFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IZetaFactory"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaERC20.sol": {
+      "lastModificationDate": 1741080506507,
+      "contentHash": "5625c75f33e25be5f4e42ab4cf699acf",
+      "sourceName": "contracts/factory/IZetaERC20.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IZetaERC20"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaRouter02.sol": {
+      "lastModificationDate": 1741080562761,
+      "contentHash": "e729b9692ed72144405610857f3d9214",
+      "sourceName": "contracts/factory/IZetaRouter02.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -526,19 +318,19 @@
         }
       },
       "imports": [
-        "./IBeraRouter01.sol"
+        "./IZetaRouter01.sol"
       ],
       "versionPragmas": [
         ">=0.6.2"
       ],
       "artifacts": [
-        "IBeraRouter02"
+        "IZetaRouter02"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraRouter01.sol": {
-      "lastModificationDate": 1740121836071,
-      "contentHash": "29156de187677bbb93102ba8539058b5",
-      "sourceName": "contracts/factory/IBeraRouter01.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaRouter01.sol": {
+      "lastModificationDate": 1741080552284,
+      "contentHash": "260a415900cb54f452e0d52dff4a29fc",
+      "sourceName": "contracts/factory/IZetaRouter01.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -568,13 +360,13 @@
         ">=0.6.2"
       ],
       "artifacts": [
-        "IBeraRouter01"
+        "IZetaRouter01"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraERC20.sol": {
-      "lastModificationDate": 1740121836070,
-      "contentHash": "52cd48b7dac0188325d3ffdba4f40430",
-      "sourceName": "contracts/factory/IBeraERC20.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\IZetaMigrator.sol": {
+      "lastModificationDate": 1741080527730,
+      "contentHash": "ca6ceba089b86457df9a3b242d505d67",
+      "sourceName": "contracts/factory/IZetaMigrator.sol",
       "solcConfig": {
         "version": "0.8.20",
         "settings": {
@@ -604,47 +396,11 @@
         ">=0.5.0"
       ],
       "artifacts": [
-        "IBeraERC20"
+        "IZetaMigrator"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\IBeraMigrator.sol": {
-      "lastModificationDate": 1740121836071,
-      "contentHash": "214de8413b9aa7227e0a4eec4df755ed",
-      "sourceName": "contracts/factory/IBeraMigrator.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IBeraMigrator"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\Multicall.sol": {
-      "lastModificationDate": 1740121836068,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\Multicall.sol": {
+      "lastModificationDate": 1741076897302,
       "contentHash": "57f13507ede9c9500a1ddc70b031a2e4",
       "sourceName": "contracts/Multicall.sol",
       "solcConfig": {
@@ -679,10 +435,254 @@
         "Multicall"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraERC20.sol": {
-      "lastModificationDate": 1740535828838,
-      "contentHash": "5e81b6837d417789309d0d55ed50424b",
-      "sourceName": "contracts/factory/BeraERC20.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\ZetaToken.sol": {
+      "lastModificationDate": 1741080634316,
+      "contentHash": "97d7c25b7f780fc08a8e891edc096c1e",
+      "sourceName": "contracts/ZetaToken.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <=0.8.20",
+        "^0.8.18",
+        "^0.8.18",
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "Context",
+        "IERC20",
+        "Ownable",
+        "Zetaworld"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaRouter01.sol": {
+      "lastModificationDate": 1741080474126,
+      "contentHash": "f24c1e5ae56b9de5eff0b040c62360b4",
+      "sourceName": "contracts/factory/ZetaRouter01.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@uniswap/lib/contracts/libraries/TransferHelper.sol",
+        "./ZetaLibrary.sol",
+        "./IZetaRouter01.sol",
+        "./IZetaFactory.sol",
+        "./IERC20.sol",
+        "./IWETH.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.6"
+      ],
+      "artifacts": [
+        "ZetaRouter01"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaLibrary.sol": {
+      "lastModificationDate": 1741081058497,
+      "contentHash": "fe80d8465baca8cc8e1610fe16f27f79",
+      "sourceName": "contracts/factory/ZetaLibrary.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeMath.sol",
+        "./IZetaFactory.sol",
+        "./IZetaPair.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "ZetaLibrary"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\SafeMath.sol": {
+      "lastModificationDate": 1741076897314,
+      "contentHash": "8d1c52ee053e6ea50630cdd67379f241",
+      "sourceName": "contracts/factory/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaRouter.sol": {
+      "lastModificationDate": 1741080454028,
+      "contentHash": "8df8e11d623a6cae249b2ac8d5d3a541",
+      "sourceName": "contracts/factory/ZetaRouter.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@uniswap/lib/contracts/libraries/TransferHelper.sol",
+        "./IZetaRouter02.sol",
+        "./IZetaFactory.sol",
+        "./ZetaLibrary.sol",
+        "./SafeMath.sol",
+        "./IERC20.sol",
+        "./IWETH.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.6"
+      ],
+      "artifacts": [
+        "ZetaRouter"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\ZetaSwapRouter.sol": {
+      "lastModificationDate": 1741080579005,
+      "contentHash": "4601f7e00659f5116b8d890cbda47a61",
+      "sourceName": "contracts/ZetaSwapRouter.sol",
+      "solcConfig": {
+        "version": "0.6.6",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <=0.6.6"
+      ],
+      "artifacts": [
+        "IBEP20",
+        "IWETH",
+        "IZetaSwapFactory",
+        "IZetaSwapPair",
+        "IZetaSwapRouter",
+        "SafeMath",
+        "TransferHelper",
+        "ZetaSwapLibrary",
+        "ZetaSwapRouter"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaPair.sol": {
+      "lastModificationDate": 1741080439157,
+      "contentHash": "acef4c6d0c576242cd379a806c29ae3c",
+      "sourceName": "contracts/factory/ZetaPair.sol",
       "solcConfig": {
         "version": "0.5.16",
         "settings": {
@@ -707,61 +707,61 @@
         }
       },
       "imports": [
-        "./IBeraERC20.sol",
+        "./IZetaPair.sol",
+        "./ZetaERC20.sol",
+        "./Math.sol",
+        "./UQ112x112.sol",
+        "./IERC20.sol",
+        "./IZetaFactory.sol",
+        "./IZetaCallee.sol"
+      ],
+      "versionPragmas": [
+        "=0.5.16"
+      ],
+      "artifacts": [
+        "ZetaPair"
+      ]
+    },
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaERC20.sol": {
+      "lastModificationDate": 1741080387805,
+      "contentHash": "a1ce4b938b7431b4e30256e7857f8c97",
+      "sourceName": "contracts/factory/ZetaERC20.sol",
+      "solcConfig": {
+        "version": "0.5.16",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IZetaERC20.sol",
         "./SafeMath.sol"
       ],
       "versionPragmas": [
         "=0.5.16"
       ],
       "artifacts": [
-        "BeraERC20"
+        "ZetaERC20"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraPair.sol": {
-      "lastModificationDate": 1740121836069,
-      "contentHash": "8733e895665a105f165fa8fe48e83ba2",
-      "sourceName": "contracts/factory/BeraPair.sol",
-      "solcConfig": {
-        "version": "0.5.16",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IBeraPair.sol",
-        "./BeraERC20.sol",
-        "./Math.sol",
-        "./UQ112x112.sol",
-        "./IERC20.sol",
-        "./IBeraFactory.sol",
-        "./IBeraCallee.sol"
-      ],
-      "versionPragmas": [
-        "=0.5.16"
-      ],
-      "artifacts": [
-        "BeraPair"
-      ]
-    },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\Math.sol": {
-      "lastModificationDate": 1740121836072,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\Math.sol": {
+      "lastModificationDate": 1741076897314,
       "contentHash": "82676f5cefc482a167096f7087a32a6d",
       "sourceName": "contracts/factory/Math.sol",
       "solcConfig": {
@@ -795,8 +795,8 @@
         "Math"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\UQ112x112.sol": {
-      "lastModificationDate": 1740121836072,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\UQ112x112.sol": {
+      "lastModificationDate": 1741076897314,
       "contentHash": "ae00c5d1575a72dd374e925f90d94650",
       "sourceName": "contracts/factory/UQ112x112.sol",
       "solcConfig": {
@@ -830,10 +830,10 @@
         "UQ112x112"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\BeraFactory.sol": {
-      "lastModificationDate": 1740121836069,
-      "contentHash": "f10fd52387e7c502bf5f61594b341030",
-      "sourceName": "contracts/factory/BeraFactory.sol",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\ZetaFactory.sol": {
+      "lastModificationDate": 1741080409829,
+      "contentHash": "264d3c1e5ebbe8aee5e105575a40eeda",
+      "sourceName": "contracts/factory/ZetaFactory.sol",
       "solcConfig": {
         "version": "0.5.16",
         "settings": {
@@ -858,19 +858,19 @@
         }
       },
       "imports": [
-        "./IBeraFactory.sol",
-        "./BeraPair.sol"
+        "./IZetaFactory.sol",
+        "./ZetaPair.sol"
       ],
       "versionPragmas": [
         "=0.5.16"
       ],
       "artifacts": [
-        "BeraFactory"
+        "ZetaFactory"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\factory\\WBNB.sol": {
-      "lastModificationDate": 1740121836072,
-      "contentHash": "11bd83acdb249d71908ea9b9094681ac",
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\factory\\WBNB.sol": {
+      "lastModificationDate": 1741081381069,
+      "contentHash": "246f613823771c3880d52654848c527c",
       "sourceName": "contracts/factory/WBNB.sol",
       "solcConfig": {
         "version": "0.4.18",
@@ -900,11 +900,11 @@
         "^0.4.18"
       ],
       "artifacts": [
-        "WBNB"
+        "WETH"
       ]
     },
-    "D:\\BeraChain\\BeraChain\\contracts\\WFTM.sol": {
-      "lastModificationDate": 1740121836068,
+    "D:\\BeraChain\\BeraChain - Copy\\contracts\\WFTM.sol": {
+      "lastModificationDate": 1741076897302,
       "contentHash": "2eb242ab0c04d1fc860cb6ddf77b349b",
       "sourceName": "contracts/WFTM.sol",
       "solcConfig": {

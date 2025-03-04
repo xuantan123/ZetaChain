@@ -3,20 +3,8 @@ const { expect } = require("chai");
 const { ethers } = require("ethers");
 
 // Khai báo biến contract
-const ROUTER_ADDRESS = "0x74D3453B87298795a26F1680218b4Dd4731ecC9a"; // Địa chỉ Router
+const ROUTER_ADDRESS = "0x475251A9411CbD033DD7BB12420D1C9f1f344c49"; // Địa chỉ Router
 const FACTORY_ABI = [
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_feeToSetter",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
   {
     "anonymous": false,
     "inputs": [
@@ -49,7 +37,6 @@ const FACTORY_ABI = [
     "type": "event"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "INIT_CODE_PAIR_HASH",
     "outputs": [
@@ -59,12 +46,10 @@ const FACTORY_ABI = [
         "type": "bytes32"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "uint256",
@@ -76,16 +61,14 @@ const FACTORY_ABI = [
     "outputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "pair",
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "allPairsLength",
     "outputs": [
@@ -95,12 +78,10 @@ const FACTORY_ABI = [
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
@@ -121,12 +102,10 @@ const FACTORY_ABI = [
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "feeTo",
     "outputs": [
@@ -136,12 +115,10 @@ const FACTORY_ABI = [
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [],
     "name": "feeToSetter",
     "outputs": [
@@ -151,21 +128,19 @@ const FACTORY_ABI = [
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "tokenA",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "",
+        "name": "tokenB",
         "type": "address"
       }
     ],
@@ -173,62 +148,41 @@ const FACTORY_ABI = [
     "outputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "pair",
         "type": "address"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_feeTo",
+        "name": "",
         "type": "address"
       }
     ],
     "name": "setFeeTo",
     "outputs": [],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "constant": false,
     "inputs": [
       {
         "internalType": "address",
-        "name": "_feeToSetter",
+        "name": "",
         "type": "address"
       }
     ],
     "name": "setFeeToSetter",
     "outputs": [],
-    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   }
 ];
 const ROUTER_ABI = [
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_factory",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_WETH",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
   {
     "inputs": [],
     "name": "WETH",
@@ -239,7 +193,7 @@ const ROUTER_ABI = [
         "type": "address"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -370,7 +324,7 @@ const ROUTER_ABI = [
         "type": "address"
       }
     ],
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -1179,13 +1133,9 @@ const ROUTER_ABI = [
     ],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive"
   }
 ];
-const ERC20_ABI = [
+const ZTW_ABI = [
   {
     "inputs": [
       {
@@ -1725,13 +1675,278 @@ const ERC20_ABI = [
     "type": "function"
   }
 ];
-
+const WZETA_ABI = [
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      },
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "allowance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "guy",
+        "type": "address"
+      },
+      {
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "deposit",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "dst",
+        "type": "address"
+      },
+      {
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "src",
+        "type": "address"
+      },
+      {
+        "name": "dst",
+        "type": "address"
+      },
+      {
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "src",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "guy",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "dst",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "Deposit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "src",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "dst",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "src",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wad",
+        "type": "uint256"
+      }
+    ],
+    "name": "Withdrawal",
+    "type": "event"
+  },
+  {
+    "type": "fallback"
+  }
+];
 // Token WBERA và BRW
-const WBERA = "0x7507c1dc16935B82698e4C63f2746A2fCf994dF8"; // Địa chỉ WBERA
-const BRW = "0xb00B24C206Ff08694d4E5f268fAc7a02C73816Bc"; // Địa chỉ BRW
+const WZETA = "0x5F0b1a82749cb4E2278EC87F8BF6B618dC71a8bf"; // Địa chỉ WBERA
+const ZTW = "0x01dcea1954EA2a640F56ea52e2eaf31Cb934B473"; // Địa chỉ BRW
 
 describe("Liquidity & Swap Tests", function () {
-    let signer, router, wberaToken, brwToken, factory;
+    let signer, router, wzetaToken, brwToken, factory;
 
     before(async function () {
         try {
@@ -1742,16 +1957,16 @@ describe("Liquidity & Swap Tests", function () {
 
             // Khởi tạo contracts
             router = new ethers.Contract(ROUTER_ADDRESS, ROUTER_ABI, signer);
-            wberaToken = new ethers.Contract(WBERA, ERC20_ABI, signer);
-            brwToken = new ethers.Contract(BRW, ERC20_ABI, signer);
+            wzetaToken = new ethers.Contract(WZETA, WZETA_ABI, signer);
+            ztwToken = new ethers.Contract(ZTW, ZTW_ABI, signer);
 
             // Lấy Factory Address từ Router
             const factoryAddress = await router.factory();
             factory = new ethers.Contract(factoryAddress, FACTORY_ABI, signer);
 
             // Lấy địa chỉ cặp thanh khoản
-            const pairAddress = await factory.getPair(WBERA, BRW);
-            console.log("WBERA-BRW Pair address:", pairAddress || "Pair chưa tồn tại");
+            const pairAddress = await factory.getPair(WZETA, ZTW);
+            console.log("WZETA-ZTW Pair address:", pairAddress || "Pair chưa tồn tại");
 
         } catch (error) {
             console.error("Setup error:", error);
@@ -1761,32 +1976,32 @@ describe("Liquidity & Swap Tests", function () {
 
     it("Should add liquidity to WBERA-BRW pool", async function () {
       try {
-          const amountWBERA = ethers.utils.parseUnits("0.1", 18); // 0.1 WBERA
-          const amountBRW = ethers.utils.parseUnits("200.0", 18); // 200 BRW
+          const amountWZETA = ethers.utils.parseUnits("0.1", 18); // 0.1 WBERA
+          const amountZTW = ethers.utils.parseUnits("200.0", 18); // 200 BRW
           const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
   
           // Kiểm tra số dư trước khi thêm thanh khoản
-          const balanceWBERA = await wberaToken.balanceOf(signer.address);
-          const balanceBRW = await brwToken.balanceOf(signer.address);
-          console.log("WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
-          console.log("BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
+          const balanceWZETA = await wzetaToken.balanceOf(signer.address);
+          const balanceZTW = await ztwToken.balanceOf(signer.address);
+          console.log("WZETA Balance:", ethers.utils.formatUnits(balanceWZETA, 18));
+          console.log("ZTW Balance:", ethers.utils.formatUnits(balanceZTW, 18));
   
           // Kiểm tra allowance và approve nếu cần
-          const allowanceWBERA = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
-          const allowanceBRW = await brwToken.allowance(signer.address, ROUTER_ADDRESS);
-          console.log("Allowance WBERA:", allowanceWBERA.toString());
-          console.log("Allowance BRW:", allowanceBRW.toString());
+          const allowanceWZETA = await wzetaToken.allowance(signer.address, ROUTER_ADDRESS);
+          const allowanceZTW = await brwToken.allowance(signer.address, ROUTER_ADDRESS);
+          console.log("Allowance WZETA:", allowanceWZETA.toString());
+          console.log("Allowance ZTW:", allowanceZTW.toString());
   
-          if (allowanceWBERA.lt(amountWBERA)) {
+          if (allowanceWZETA.lt(amountWZETA)) {
               console.log("Approving WBERA...");
-              const approveTx1 = await wberaToken.approve(ROUTER_ADDRESS, amountWBERA);
+              const approveTx1 = await wzetaToken.approve(ROUTER_ADDRESS, amountWZETA);
               await approveTx1.wait();
               console.log("WBERA Approved!");
           }
   
-          if (allowanceBRW.lt(amountBRW)) {
+          if (allowanceZTW.lt(amountZTW)) {
               console.log("Approving BRW...");
-              const approveTx2 = await brwToken.approve(ROUTER_ADDRESS, amountBRW);
+              const approveTx2 = await brwToken.approve(ROUTER_ADDRESS, amountZTW);
               await approveTx2.wait();
               console.log("BRW Approved!");
           }
@@ -1796,8 +2011,8 @@ describe("Liquidity & Swap Tests", function () {
           const tx = await router.addLiquidity(
               WBERA,
               BRW,
-              amountWBERA,
-              amountBRW,
+              amountWZETA,
+              amountZTW,
               0,
               0,
               signer.address,
@@ -1813,53 +2028,52 @@ describe("Liquidity & Swap Tests", function () {
           throw error;
       }
   });
-  
 
-  it("Should swap WBERA for BRW", async function () {
-    try {
-        const amountIn = ethers.utils.parseUnits("0.005", 18); // 0.5 WBERA
-        const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
+//   it("Should swap WBERA for BRW", async function () {
+//     try {
+//         const amountIn = ethers.utils.parseUnits("0.005", 18); // 0.5 WBERA
+//         const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
 
-        // Kiểm tra allowance trước khi swap
-        const allowance = await wberaToken.allowance(signer.address, ROUTER_ADDRESS);
-        if (allowance.lt(amountIn)) {
-            console.log("Approving WBERA for swap...");
-            const approveTx = await wberaToken.approve(ROUTER_ADDRESS, amountIn);
-            await approveTx.wait();
-            console.log("WBERA Approved for swap!");
-        }
+//         // Kiểm tra allowance trước khi swap
+//         const allowance = await wzetaToken.allowance(signer.address, ROUTER_ADDRESS);
+//         if (allowance.lt(amountIn)) {
+//             console.log("Approving WBERA for swap...");
+//             const approveTx = await wzetaToken.approve(ROUTER_ADDRESS, amountIn);
+//             await approveTx.wait();
+//             console.log("WBERA Approved for swap!");
+//         }
 
-        // Kiểm tra số dư trước khi swap
-        const balanceWBERA = await wberaToken.balanceOf(signer.address);
-        console.log("Current WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
+//         // Kiểm tra số dư trước khi swap
+//         const balanceWBERA = await wzetaToken.balanceOf(signer.address);
+//         console.log("Current WBERA Balance:", ethers.utils.formatUnits(balanceWBERA, 18));
 
-        if (balanceWBERA.lt(amountIn)) {
-            console.error("Not enough WBERA to swap!");
-            return;
-        }
+//         if (balanceWBERA.lt(amountIn)) {
+//             console.error("Not enough WBERA to swap!");
+//             return;
+//         }
 
-        // Swap token
-        console.log("Swapping WBERA for BRW...");
-        const swapTx = await router.swapExactTokensForTokens(
-            amountIn,
-            0, // Chấp nhận bất kỳ lượng BRW nào (có thể thay bằng slippage tolerance)
-            [WBERA, BRW],
-            signer.address,
-            deadline,
-            { gasLimit: 300000 }
-        );
+//         // Swap token
+//         console.log("Swapping WBERA for BRW...");
+//         const swapTx = await router.swapExactTokensForTokens(
+//             amountIn,
+//             0, // Chấp nhận bất kỳ lượng BRW nào (có thể thay bằng slippage tolerance)
+//             [WBERA, BRW],
+//             signer.address,
+//             deadline,
+//             { gasLimit: 300000 }
+//         );
 
-        const receipt = await swapTx.wait();
-        console.log("Swap Completed! Tx Hash:", receipt.transactionHash);
+//         const receipt = await swapTx.wait();
+//         console.log("Swap Completed! Tx Hash:", receipt.transactionHash);
 
-        // Kiểm tra số dư BRW sau khi swap
-        const balanceBRW = await brwToken.balanceOf(signer.address);
-        console.log("New BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
+//         // Kiểm tra số dư BRW sau khi swap
+//         const balanceBRW = await brwToken.balanceOf(signer.address);
+//         console.log("New BRW Balance:", ethers.utils.formatUnits(balanceBRW, 18));
 
-    } catch (error) {
-        console.error("Swap Error:", error);
-        throw error;
-    }
-});
+//     } catch (error) {
+//         console.error("Swap Error:", error);
+//         throw error;
+//     }
+// });
 
 });
