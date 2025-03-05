@@ -290,4 +290,4 @@ async function wrapBERA(amount) {
 }
 
 // Chạy wrap 1 BERA
-wrapBERA("6.0").catch(console.error);
+wrapBERA("3.0").catch(console.error);

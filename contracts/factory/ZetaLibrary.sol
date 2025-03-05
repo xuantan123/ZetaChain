@@ -29,7 +29,7 @@ library ZetaLibrary {
                         hex"ff",
                         factory,
                         keccak256(abi.encodePacked(token0, token1)),
-                        hex"0e4b3c3320d3ed33a564d800cd6a1544f83c4f5db687a43ebb878359aefdcb2d" // init code hash
+                        hex"e86662e96900e4449b44f18d0d14562cfbbf80ea5ad7b3defafb60c945bfaadf" // init code hash
                     )
                 )
             )
