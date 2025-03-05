@@ -1,10 +1,8 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-    // 🏭 Triển khai contract ZetaFactory (hoặc thay bằng địa chỉ contract đã deploy)
     const factoryAddress = "0xb7193f5FD04A9d9823D4330E30e174034ddAa5bc"; 
 
-    // 📝 ABI của contract ZetaFactory (chỉ cần phần INIT_CODE_PAIR_HASH)
     const factoryABI = [
         {
           "inputs": [
@@ -214,19 +212,15 @@ async function main() {
         }
       ];
 
-    // 🔌 Kết nối với mạng blockchain
     const provider = new ethers.providers.JsonRpcProvider(process.env.URL);
 
-    // ⚡ Tạo contract instance
     const factoryContract = new ethers.Contract(factoryAddress, factoryABI, provider);
 
-    // 🔍 Gọi hàm INIT_CODE_PAIR_HASH
     const initCodePairHash = await factoryContract.INIT_CODE_PAIR_HASH();
 
     console.log("✅ INIT_CODE_PAIR_HASH:", initCodePairHash);
 }
 
-// 🚀 Chạy script
 main()
     .then(() => process.exit(0))
     .catch((error) => {
