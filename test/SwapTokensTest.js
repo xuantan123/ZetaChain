@@ -2180,8 +2180,6 @@ async function main() {
     console.log(`\n⏳ Đợi 10 giây trước khi swap ngược lại...`);
     await new Promise(resolve => setTimeout(resolve, 10000));
     
-    // Try ZTW to WZETA swap
-    await swapZTWtoETH();
     
     // Check final balances
     await checkBalances();
