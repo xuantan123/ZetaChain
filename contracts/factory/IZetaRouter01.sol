@@ -4,7 +4,7 @@ pragma solidity >=0.6.2;
 interface IZetaRouter01 {
     function factory() external pure returns (address);
 
-    function WETH() external pure returns (address);
+    function WZETA() external pure returns (address);
 
     function addLiquidity(
         address tokenA,

@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-    const factoryAddress = "0xb7193f5FD04A9d9823D4330E30e174034ddAa5bc"; 
+    const factoryAddress = "0x03f5E481D452f145C90CB08751C631a4E33eE776"; 
 
     const factoryABI = [
         {

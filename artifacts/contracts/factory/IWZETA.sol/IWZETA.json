@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "IWETH",
-  "sourceName": "contracts/ZetaSwapRouter.sol",
+  "contractName": "IWZETA",
+  "sourceName": "contracts/factory/IWZETA.sol",
   "abi": [
     {
       "inputs": [],

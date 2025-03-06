@@ -66,7 +66,7 @@ library TransferHelper {
 interface IZetaSwapRouter {
     function factory() external pure returns (address);
 
-    function WETH() external pure returns (address);
+    function WZETA() external pure returns (address);
 
     function addLiquidity(
         address tokenA,
@@ -747,7 +747,7 @@ interface IBEP20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-interface IWETH {
+interface IWZETA {
     function deposit() external payable;
 
     function transfer(address to, uint256 value) external returns (bool);
@@ -758,20 +758,20 @@ interface IWETH {
 contract ZetaSwapRouter is IZetaSwapRouter {
     using SafeMath for uint256;
     address public immutable override factory;
-    address public immutable override WETH;
+    address public immutable override WZETA;
 
     modifier ensure(uint256 deadline) {
         require(deadline >= block.timestamp, 'ZetaSwapRouter: EXPIRED');
         _;
     }
 
-    constructor(address _factory, address _WETH) public {
+    constructor(address _factory, address _WZETA) public {
         factory = _factory;
-        WETH = _WETH;
+        WZETA = _WZETA;
     }
 
     receive() external payable {
-        assert(msg.sender == WETH); // only accept ETH via fallback from the WETH contract
+        assert(msg.sender == WZETA); // only accept ETH via fallback from the WZETA contract
     }
 
     // **** ADD LIQUIDITY ****
@@ -852,16 +852,16 @@ contract ZetaSwapRouter is IZetaSwapRouter {
     {
         (amountToken, amountETH) = _addLiquidity(
             token,
-            WETH,
+            WZETA,
             amountTokenDesired,
             msg.value,
             amountTokenMin,
             amountETHMin
         );
-        address pair = ZetaSwapLibrary.pairFor(factory, token, WETH);
+        address pair = ZetaSwapLibrary.pairFor(factory, token, WZETA);
         TransferHelper.safeTransferFrom(token, msg.sender, pair, amountToken);
-        IWETH(WETH).deposit{value: amountETH}();
-        assert(IWETH(WETH).transfer(pair, amountETH));
+        IWZETA(WZETA).deposit{value: amountETH}();
+        assert(IWZETA(WZETA).transfer(pair, amountETH));
         liquidity = IZetaSwapPair(pair).mint(to);
         // refund dust ETH, if any
         if (msg.value > amountETH) TransferHelper.safeTransferETH(msg.sender, msg.value - amountETH);
@@ -896,7 +896,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
     ) public virtual override ensure(deadline) returns (uint256 amountToken, uint256 amountETH) {
         (amountToken, amountETH) = removeLiquidity(
             token,
-            WETH,
+            WZETA,
             liquidity,
             amountTokenMin,
             amountETHMin,
@@ -904,7 +904,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
             deadline
         );
         TransferHelper.safeTransfer(token, to, amountToken);
-        IWETH(WETH).withdraw(amountETH);
+        IWZETA(WZETA).withdraw(amountETH);
         TransferHelper.safeTransferETH(to, amountETH);
     }
 
@@ -939,7 +939,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         bytes32 r,
         bytes32 s
     ) external virtual override returns (uint256 amountToken, uint256 amountETH) {
-        address pair = ZetaSwapLibrary.pairFor(factory, token, WETH);
+        address pair = ZetaSwapLibrary.pairFor(factory, token, WZETA);
         uint256 value = approveMax ? uint256(-1) : liquidity;
         IZetaSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         (amountToken, amountETH) = removeLiquidityETH(token, liquidity, amountTokenMin, amountETHMin, to, deadline);
@@ -954,9 +954,9 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) public virtual override ensure(deadline) returns (uint256 amountETH) {
-        (, amountETH) = removeLiquidity(token, WETH, liquidity, amountTokenMin, amountETHMin, address(this), deadline);
+        (, amountETH) = removeLiquidity(token, WZETA, liquidity, amountTokenMin, amountETHMin, address(this), deadline);
         TransferHelper.safeTransfer(token, to, IBEP20(token).balanceOf(address(this)));
-        IWETH(WETH).withdraw(amountETH);
+        IWZETA(WZETA).withdraw(amountETH);
         TransferHelper.safeTransferETH(to, amountETH);
     }
 
@@ -972,7 +972,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         bytes32 r,
         bytes32 s
     ) external virtual override returns (uint256 amountETH) {
-        address pair = ZetaSwapLibrary.pairFor(factory, token, WETH);
+        address pair = ZetaSwapLibrary.pairFor(factory, token, WZETA);
         uint256 value = approveMax ? uint256(-1) : liquidity;
         IZetaSwapPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
         amountETH = removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -1046,11 +1046,11 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[0] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[0] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         amounts = ZetaSwapLibrary.getAmountsOut(factory, msg.value, path);
         require(amounts[amounts.length - 1] >= amountOutMin, 'ZetaSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
-        IWETH(WETH).deposit{value: amounts[0]}();
-        assert(IWETH(WETH).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
+        IWZETA(WZETA).deposit{value: amounts[0]}();
+        assert(IWZETA(WZETA).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
         _swap(amounts, path, to);
     }
 
@@ -1061,7 +1061,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[path.length - 1] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         amounts = ZetaSwapLibrary.getAmountsIn(factory, amountOut, path);
         require(amounts[0] <= amountInMax, 'ZetaSwapRouter: EXCESSIVE_INPUT_AMOUNT');
         TransferHelper.safeTransferFrom(
@@ -1071,7 +1071,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
             amounts[0]
         );
         _swap(amounts, path, address(this));
-        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
+        IWZETA(WZETA).withdraw(amounts[amounts.length - 1]);
         TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
@@ -1082,7 +1082,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[path.length - 1] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         amounts = ZetaSwapLibrary.getAmountsOut(factory, amountIn, path);
         require(amounts[amounts.length - 1] >= amountOutMin, 'ZetaSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
         TransferHelper.safeTransferFrom(
@@ -1092,7 +1092,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
             amounts[0]
         );
         _swap(amounts, path, address(this));
-        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
+        IWZETA(WZETA).withdraw(amounts[amounts.length - 1]);
         TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
@@ -1102,11 +1102,11 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) returns (uint256[] memory amounts) {
-        require(path[0] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[0] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         amounts = ZetaSwapLibrary.getAmountsIn(factory, amountOut, path);
         require(amounts[0] <= msg.value, 'ZetaSwapRouter: EXCESSIVE_INPUT_AMOUNT');
-        IWETH(WETH).deposit{value: amounts[0]}();
-        assert(IWETH(WETH).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
+        IWZETA(WZETA).deposit{value: amounts[0]}();
+        assert(IWZETA(WZETA).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amounts[0]));
         _swap(amounts, path, to);
         // refund dust ETH, if any
         if (msg.value > amounts[0]) TransferHelper.safeTransferETH(msg.sender, msg.value - amounts[0]);
@@ -1165,10 +1165,10 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override payable ensure(deadline) {
-        require(path[0] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[0] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         uint256 amountIn = msg.value;
-        IWETH(WETH).deposit{value: amountIn}();
-        assert(IWETH(WETH).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amountIn));
+        IWZETA(WZETA).deposit{value: amountIn}();
+        assert(IWZETA(WZETA).transfer(ZetaSwapLibrary.pairFor(factory, path[0], path[1]), amountIn));
         uint256 balanceBefore = IBEP20(path[path.length - 1]).balanceOf(to);
         _swapSupportingFeeOnTransferTokens(path, to);
         require(
@@ -1184,7 +1184,7 @@ contract ZetaSwapRouter is IZetaSwapRouter {
         address to,
         uint256 deadline
     ) external virtual override ensure(deadline) {
-        require(path[path.length - 1] == WETH, 'ZetaSwapRouter: INVALID_PATH');
+        require(path[path.length - 1] == WZETA, 'ZetaSwapRouter: INVALID_PATH');
         TransferHelper.safeTransferFrom(
             path[0],
             msg.sender,
@@ -1192,9 +1192,9 @@ contract ZetaSwapRouter is IZetaSwapRouter {
             amountIn
         );
         _swapSupportingFeeOnTransferTokens(path, address(this));
-        uint256 amountOut = IBEP20(WETH).balanceOf(address(this));
+        uint256 amountOut = IBEP20(WZETA).balanceOf(address(this));
         require(amountOut >= amountOutMin, 'ZetaSwapRouter: INSUFFICIENT_OUTPUT_AMOUNT');
-        IWETH(WETH).withdraw(amountOut);
+        IWZETA(WZETA).withdraw(amountOut);
         TransferHelper.safeTransferETH(to, amountOut);
     }
 

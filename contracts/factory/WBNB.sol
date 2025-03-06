@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.4.18;
 
-contract WETH {
-    string public name = "Wrapped ETH";
-    string public symbol = "WETH";
+contract WZETA {
+    string public name = "Wrapped ZETA";
+    string public symbol = "WZETA";
     uint8 public decimals = 18;
 
     event Approval(address indexed src, address indexed guy, uint256 wad);
